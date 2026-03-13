@@ -51,9 +51,6 @@ def main_screen():
         text = f"{i+1}. {player['attempt']} attempts - {player['time']}"
         label = tk.Label(main_win, text=text, font=("Arial", 14))
         label.pack()
-
-
-
     main_win.mainloop()
 
 def check_guess():
@@ -91,7 +88,7 @@ def check_guess():
         add_score(main_win.attempts)
         messagebox.showinfo("Баяр хүргэе!", f"Та {main_win.attempts} оролдлогоор таалаа!")
         reset_game()
-            
+        win_win()
     main_win.entry.delete(0, tk.END)
 
 
@@ -132,4 +129,8 @@ def add_score(attempt):
 
     with open("leaderboard.json", "w") as file:
         json.dump(data, file, indent=4)
+    
+def win_win():
+    main_win.destroy()
+    main_screen()
 main_screen()
